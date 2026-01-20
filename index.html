@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Dental | Advanced Biological Dentistry</title>
+    <meta name="description" content="Advanced biological and restorative dentistry in New York. Experience modern dental care with a focus on patient comfort and neuroscience-based treatments.">
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="Aura Dental | Advanced Biological Dentistry">
+    <meta property="og:description" content="Modern dental care, quietly delivered. Experience neuroscience-based biological dentistry in New York.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80">
+    <meta property="og:url" content="https://auradental.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦷</text></svg>">
+    
+    <!-- CSS & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'emerald': {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        }
+                    },
+                    fontFamily: {
+                        'heading': ['Outfit', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        [x-cloak] { display: none !important; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #F9FAFB; 
+            color: #1F2937; 
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4 { 
+            font-family: 'Outfit', sans-serif; 
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.98); 
+            backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8); 
+        }
+        .shadow-card { 
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05); 
+        }
+        .shadow-soft { 
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03); 
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #F0F9FF 0%, #F0FDF4 50%, #ECFDF5 100%);
+        }
+        .active-nav {
+            color: #059669;
+            border-bottom: 2px solid #059669;
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        .section-padding {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+        }
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+        }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body x-data="{
+    currentPage: 'home',
+    mobileMenu: false,
+    navigateTo(page) {
+        this.currentPage = page;
+        this.mobileMenu = false;
+        window.scrollTo(0, 0);
+    }
+}" class="min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex justify-between items-center">
+            <a @click="navigateTo('home')" class="cursor-pointer flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-emerald-700 to-emerald-900 rounded-xl flex items-center justify-center text-white font-bold text-lg">A</div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-tight text-gray-900 leading-none">AURA DENTAL</span>
+                    <span class="text-xs tracking-[0.15em] text-emerald-700 font-semibold">ADVANCED DENTISTRY</span>
+                </div>
+            </a>
+
+            <div class="hidden lg:flex items-center gap-10 text-sm font-medium text-gray-700">
+                <a @click="navigateTo('home')" :class="currentPage === 'home' ? 'active-nav pb-1' : 'hover:text-emerald-600 transition-colors'">Home</a>
+                <a @click="navigateTo('about')" :class="currentPage === 'about' ? 'active-nav pb-1' : 'hover:text-emerald-600 transition-colors'">About</a>
+                <a @click="navigateTo('services')" :class="currentPage === 'services' ? 'active-nav pb-1' : 'hover:text-emerald-600 transition-colors'">Services</a>
+                <a @click="navigateTo('team')" :class="currentPage === 'team' ? 'active-nav pb-1' : 'hover:text-emerald-600 transition-colors'">Our Team</a>
+                <a @click="navigateTo('contact')" :class="currentPage === 'contact' ? 'active-nav pb-1' : 'hover:text-emerald-600 transition-colors'">Contact</a>
+                <a @click="navigateTo('contact')" class="bg-gradient-to-r from-emerald-700 to-emerald-800 text-white px-6 py-3 rounded-full hover:from-emerald-800 hover:to-emerald-900 transition-all shadow-md hover:shadow-lg font-medium">Book Appointment</a>
+            </div>
+
+            <button @click="mobileMenu = true" class="lg:hidden p-2 text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div x-cloak x-show="mobileMenu" class="fixed inset-0 z-50 bg-white p-8">
+        <div class="flex justify-between items-center mb-12">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-emerald-700 rounded-lg flex items-center justify-center text-white font-bold">A</div>
+                <span class="text-lg font-bold text-gray-900">AURA DENTAL</span>
+            </div>
+            <button @click="mobileMenu = false" class="text-gray-500 font-medium text-sm">CLOSE &times;</button>
+        </div>
+        <div class="flex flex-col gap-6 text-xl font-medium text-gray-900">
+            <a @click="navigateTo('home')" class="text-left py-3 border-b border-gray-100">Home</a>
+            <a @click="navigateTo('about')" class="text-left py-3 border-b border-gray-100">About</a>
+            <a @click="navigateTo('services')" class="text-left py-3 border-b border-gray-100">Services</a>
+            <a @click="navigateTo('team')" class="text-left py-3 border-b border-gray-100">Our Team</a>
+            <a @click="navigateTo('contact')" class="text-left py-3 border-b border-gray-100">Contact</a>
+            <a @click="navigateTo('contact')" class="mt-6 bg-emerald-700 text-white py-4 rounded-lg font-medium text-center">Book Appointment</a>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-20">
+        
+        <!-- ========== HOME PAGE ========== -->
+        <div x-show="currentPage === 'home'" x-transition:enter="animate-fade-in" class="min-h-screen">
+            <!-- Hero Section -->
+            <section class="hero-gradient pt-24 pb-20 px-6 lg:px-12">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div class="space-y-8 animate-slide-up">
+                            <span class="inline-block px-4 py-2 bg-emerald-50 text-emerald-800 rounded-full text-xs font-semibold uppercase tracking-wider">A New Standard of Dental Empathy</span>
+                            <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">Modern dental care, <span class="text-emerald-700">quietly</span> delivered.</h1>
+                            <p class="text-lg text-gray-600 leading-relaxed max-w-xl">At Aura Dental, we've redefined the dental experience. Our biological approach combines cutting-edge technology with neuroscience principles to ensure your nervous system remains at ease while achieving optimal oral health.</p>
+                            
+                            <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                                <a @click="navigateTo('contact')" class="bg-gradient-to-r from-emerald-700 to-emerald-800 text-white px-8 py-4 rounded-full hover:from-emerald-800 hover:to-emerald-900 transition-all shadow-lg hover:shadow-xl font-medium text-center">
+                                    Book Your Consultation
+                                </a>
+                                <a @click="navigateTo('services')" class="bg-white text-emerald-700 px-8 py-4 rounded-full hover:bg-emerald-50 transition-all border border-emerald-200 font-medium text-center">
+                                    Explore Our Services
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="relative animate-slide-up">
+                            <div class="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border border-gray-100">
+                                <img 
+                                    src="https://i.ibb.co/bRPb5Lkt/Gemini-Generated-Image-fc1pbnfc1pbnfc1p.png" 
+                                    alt="Modern dental clinic with comfortable seating and natural light"
+                                    class="w-full h-full object-cover lazy-image"
+                                    onload="this.classList.add('loaded')"
+                                >
+                                <div class="image-overlay"></div>
+                            </div>
+                            
+                            <div class="absolute -bottom-6 -right-6 lg:-right-12 w-4/5 bg-white p-8 rounded-3xl shadow-2xl border border-gray-100 animate-slide-up">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-quote-left text-emerald-700"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-900 font-medium italic">"I finally found a dental practice that listens more than they drill. The care is exceptional."</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-emerald-700 text-sm font-semibold">Sarah L.</p>
+                                        <p class="text-gray-500 text-xs">Patient since 2022</p>
+                                    </div>
+                                    <div class="flex text-amber-400">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="py-16 px-6 bg-gradient-to-r from-emerald-800 to-emerald-900 text-white">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                        <div>
+                            <h3 class="text-5xl font-bold mb-2">98%</h3>
+                            <p class="text-emerald-200">Patient Satisfaction</p>
+                        </div>
+                        <div>
+                            <h3 class="text-5xl font-bold mb-2">2,500+</h3>
+                            <p class="text-emerald-200">Successful Procedures</p>
+                        </div>
+                        <div>
+                            <h3 class="text-5xl font-bold mb-2">18+</h3>
+                            <p class="text-emerald-200">Years Experience</p>
+                        </div>
+                        <div>
+                            <h3 class="text-5xl font-bold mb-2">24/7</h3>
+                            <p class="text-emerald-200">Emergency Support</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Preview -->
+            <section class="section-padding px-6 lg:px-12">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <span class="inline-block px-4 py-2 bg-emerald-50 text-emerald-800 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">Our Specialties</span>
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">Comprehensive Dental Services</h2>
+                        <p class="text-lg text-gray-600">From preventive biological care to advanced restorative solutions, we offer a complete range of services.</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-8 mb-12">
+                        <div class="bg-white rounded-3xl p-8 shadow-card border border-gray-100 hover-lift group">
+                            <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-200 transition-colors">
+                                <i class="fas fa-shield-alt text-emerald-700 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Preventive Care</h3>
+                            <p class="text-gray-600 mb-6">Advanced diagnostics and biological treatments to maintain optimal oral health.</p>
+                            <a @click="navigateTo('services')" class="inline-flex items-center gap-2 text-emerald-700 font-medium hover:text-emerald-800">
+                                <span>Learn more</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="bg-white rounded-3xl p-8 shadow-card border border-gray-100 hover-lift group">
+                            <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-200 transition-colors">
+                                <i class="fas fa-tooth text-emerald-700 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Restorative Dentistry</h3>
+                            <p class="text-gray-600 mb-6">Biomimetic restorations using high-grade ceramics for natural-looking results.</p>
+                            <a @click="navigateTo('services')" class="inline-flex items-center gap-2 text-emerald-700 font-medium hover:text-emerald-800">
+                                <span>Learn more</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="bg-white rounded-3xl p-8 shadow-card border border-gray-100 hover-lift group">
+                            <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-200 transition-colors">
+                                <i class="fas fa-smile text-emerald-700 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Cosmetic Dentistry</h3>
+                            <p class="text-gray-600 mb-6">Minimally invasive cosmetic procedures for natural-looking, lasting results.</p>
+                            <a @click="navigateTo('services')" class="inline-flex items-center gap-2 text-emerald-700 font-medium hover:text-emerald-800">
+                                <span>Learn more</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <a @click="navigateTo('services')" class="inline-flex items-center gap-2 bg-emerald-700 text-white px-8 py-4 rounded-full hover:bg-emerald-800 transition-all font-medium">
+                            <span>View All Services</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Preview -->
+            <section class="py-16 px-6 bg-gradient-to-r from-emerald-50 to-cyan-50">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div class="animate-slide-up">
+                            <span class="inline-block px-4 py-2 bg-emerald-100 text-emerald-800 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">Meet Our Experts</span>
+                            <h2 class="text-4xl font-bold text-gray-900 mb-6">Led by Dr. Julian Aura, DDS</h2>
+                            <p class="text-lg text-gray-600 mb-8">With over 18 years of clinical experience, Dr. Aura founded Aura Dental on a revolutionary principle: Fear is often a symptom of poor communication, rushed care, and outdated practices.</p>
+                            <a @click="navigateTo('team')" class="inline-flex items-center gap-2 bg-emerald-700 text-white px-8 py-4 rounded-full hover:bg-emerald-800 transition-all font-medium">
+                                <span>Meet Our Team</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-6 animate-slide-up">
+                            <div class="relative h-48 rounded-3xl overflow-hidden shadow-lg">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                                    alt="Dentist examining patient with modern equipment"
+                                    class="w-full h-full object-cover lazy-image"
+                                    onload="this.classList.add('loaded')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                            </div>
+                            <div class="relative h-48 rounded-3xl overflow-hidden shadow-lg mt-8">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1588773846159-8d8d1545c7c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                                    alt="Modern dental treatment room with comfortable chair"
+                                    class="w-full h-full object-cover lazy-image"
+                                    onload="this.classList.add('loaded')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                            </div>
+                            <div class="relative h-48 rounded-3xl overflow-hidden shadow-lg">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                                    alt="Dental hygienist performing teeth cleaning"
+                                    class="w-full h-full object-cover lazy-image"
+                                    onload="this.classList.add('loaded')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                            </div>
+                            <div class="relative h-48 rounded-3xl overflow-hidden shadow-lg mt-8">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                                    alt="Dental consultation with doctor and patient"
+                                    class="w-full h-full object-cover lazy-image"
+                                    onload="this.classList.add('loaded')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="py-20 px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Ready to Experience Dental Care Differently?</h2>
+                    <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">Schedule your discovery consultation and see how our biological approach can transform your oral health experience.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a @click="navigateTo('contact')" class="bg-gradient-to-r from-emerald-700 to-emerald-800 text-white px-8 py-4 rounded-full hover:from-emerald-800 hover:to-emerald-900 transition-all shadow-lg hover:shadow-xl font-medium">
+                            Book Your Consultation
+                        </a>
+                        <a href="tel:2125550198" class="bg-white text-emerald-700 px-8 py-4 rounded-full hover:bg-emerald-50 transition-all border border-emerald-200 font-medium">
+                            <i class="fas fa-phone-alt mr-2"></i>212.555.0198
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========== ABOUT PAGE ========== -->
+        <div x-show="currentPage === 'about'" x-transition:enter="animate-fade-in" class="min-h-screen">
+            <!-- About Hero -->
+            <section class="hero-gradient pt-24 pb-16 px-6 lg:px-12">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center max-w-3xl mx-auto">
+                        <span class="inline-block px-4 py-2 bg-emerald-50 text-emerald-800 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">Our Philosophy</span>
+                        <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Redefining Dental Care</h1>
+                        <p class="text-lg text-gray-600">We believe dentistry should be a calming, transformative experience that supports your overall health and wellbeing.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Story -->
+            <section class="section-padding px-6 lg:px-12">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl h-96 animate-slide-up">
+                            <img 
+                                src="https://i.ibb.co/bRPb5Lkt/Gemini-Generated-Image-fc1pbnfc1pbnfc1p.png" 
+                                alt="Aura Dental clinic interior with modern design and comfortable seating"
+                                class="w-full h-full object-cover lazy-image"
+                                onload="this.classList.add('loaded')"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        </div>
+                        
+                        <div class="animate-slide-up">
+                            <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
+                            <p class="text-lg text-gray-600 mb-6">Founded in 2010 by Dr. Julian Aura, Aura Dental began as a vision to transform the dental experience from something to endure into something to embrace.</p>
+                            <p class="text-gray-600 mb-8">After years of witnessing patients' dental anxiety and recognizing how traditional dental practices often exacerbated fear, Dr. Aura set out to create a different kind of dental practice—one that prioritizes the nervous system as much as the teeth.</p>
+                            
+                            <div class="grid grid-cols-2 gap-8">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-emerald-700 mb-2">2010</h3>
+                                    <p class="text-gray-600">Aura Dental founded with one treatment room</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-emerald-700 mb-2">2018</h3>
+                                    <p class="text-gray-600">Expanded to current 8,000 sq ft facility</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Our Philosophy -->
+                    <div class="mb-20">
+                        <div class="text-center max-w-3xl mx-auto mb-16 animate-slide-up">
+                            <h2 class="text-4xl font-bold text-gray-900 mb-6">The Aura Dental Difference</h2>
+                            <p class="text-lg text-gray-600">Our approach is built on three foundational principles that guide every aspect of your care.</p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="bg-white rounded-3xl p-8 shadow-card border border-gray-100 hover-lift animate-slide-up">
+                                <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6">
+                                    <i class="fas fa-brain text-emerald-700 text-xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-4">Neuroscience-Based Care</h3>
+                                <p class="text-gray-600 leading-relaxed">We design every aspect of your visit to keep your nervous system at ease, from ambient lighting to noise management and gentle techniques.</p>
+                            </div>
+                            
+                            <div class="bg-white rounded-3xl p-8 shadow-card border border-gray-100 hover-lift animate-slide-up" style="animation-delay: 0.1s;">
+                                <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6">
+                                    <i class="fas fa-leaf text-emerald-700 text-xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-4">Biological Dentistry</h3>
+                                <p class="text-gray-600 leading-relaxed">We use biocompatible materials and consider the mouth-body connection for treatments that support overall health rather than just fixing symptoms.</p>
+                            </div>
+                            
+                            <div class="bg-white rounded-3xl p-8 shadow-card border border-gray-100 hover-lift animate-slide-up" style="animation-delay: 0.2s;">
+                                <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6">
+                                    <i class="fas fa-heart text-emerald-700 text-xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-4">Patient-Centered Approach</h3>
+                                <p class="text-gray-600 leading-relaxed">We take time to listen, explain, and ensure you feel heard and comfortable throughout your dental journey. Your comfort is our priority.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Our Facility -->
+                    <div class="bg-gradient-to-r from-emerald-50 to-cyan-50 rounded-3xl p-12 border border-emerald-100 animate-slide-up">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h3 class="text-3xl font-bold text-gray-900 mb-6">A Healing Environment</h3>
+                                <p class="text-gray-600 leading-relaxed mb-6">Our clinic is designed as a healing environment, not a clinical space. From ergonomic chairs with memory foam to ambient lighting that mimics natural daylight, every detail is considered for your comfort.</p>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center gap-3 text-gray-700">
+                                        <i class="fas fa-check text-emerald-600"></i>
+                                        <span>HEPA air filtration with UV-C sanitization</span>
+                                    </li>
+                                    <li class="flex items-center gap-3 text-gray-700">
+                                        <i class="fas fa-check text-emerald-600"></i>
+                                        <span>Noise-canceling headphones and silent dental tools</span>
+                                    </li>
+                                    <li class="flex items-center gap-3 text-gray-700">
+                                        <i class="fas fa-check text-emerald-600"></i>
+                                        <span>Warm blankets and comfort items in every room</span>
+                                    </li>
+                                    <li class="flex items-center gap-3 text-gray-700">
+                                        <i class="fas fa-check text-emerald-600"></i>
+                                        <span>Visible sterilization theater for complete transparency</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="relative rounded-3xl overflow-hidden shadow-lg h-80">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" 
+                                    alt="Modern, calming dental treatment room"
+                                    class="w-full h-full object-cover lazy-image"
+                                    onload="this.classList.add('loaded')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========== SERVICES PAGE ========== -->
+        <div x-show="currentPage === 'services'" x-transition:enter="animate-fade-in" class="min-h-screen">
+            <!-- Services Hero -->
+            <section class="hero-gradient pt-24 pb-16 px-6 lg:px-12">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center max-w-3xl mx-auto">
+                        <span class="inline-block px-4 py-2 bg-emerald-50 text-emerald-800 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">Our Specialties</span>
+                        <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Comprehensive Dental Services</h1>
+                        <p class="text-lg text-gray-600">From preventive biological care to advanced restorative solutions, we offer a complete range of services designed around your health and comfort.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Services -->
+            <section class="section-padding px-6 lg:px-12">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-8 mb-16">
+                        <!-- Preventive Care -->
+                        <div class="bg-white rounded-3xl p-10 shadow-card border border-gray-100 hover-lift animate-slide-up">
+                            <div class="flex items-start justify-between mb-6">
+                                <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center">
+                                    <i class="fas fa-shield-alt text-emerald-700 text-2xl"></i>
+                                </div>
+                                <span class="px-4 py-2 bg-emerald-50 text-emerald-700 rounded-full text-xs font-semibold">Preventive</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Biological Preventive Care</h3>
+                            <p class="text-gray-600 leading-relaxed mb-8">Our proactive approach focuses on early detection, microbiome balance, and biocompatible treatments to maintain optimal oral-systemic health.</p>
+                            
+                            <div class="relative rounded-2xl overflow-hidden h-48 mb-8">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1588773846159-8d8d1545c7c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                    alt="Preventive dental care and cleaning"
+                                    class="w-full h-full object-cover lazy-image"
+                                    onload="this.classList.add('loaded')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                            </div>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center gap-3 text-gray-700">
+                                    <i class="fas fa-check-circle text-emerald-500"></i>
+                                    <span class="font-medium">Guided Biofilm Therapy</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-gray-700">
+                                    <i class="fas fa-check-circle text-emerald-500"></i>
+                                    <span class="font-medium">Oral Microbiome Analysis</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-gray-700">
+                                    <i class="fas fa-check-circle text-emerald-500"></i>
+                                    <span class="font-medium">Low-Radiation Digital Imaging</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-gray-700">
+                                    <i class="fas fa-check-circle text-emerald-500"></i>
+                                    <span class="font-medium">Salivary Diagnostics</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-6 border-t border-gray-100">
+                                <h4 class="font-bold text-gray-900 mb-4">Investment: From $150</h4>
+                                <a @click="navigateTo('contact')" class="inline-flex items-center gap-2 text-emerald-700 font-medium hover:text-emerald-800">
+                                    <span>Schedule preventive visit</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Restorative Dentistry -->
+                        <div class="bg-gradient-to-br from-emerald-800 to-emerald-900 text-white rounded-3xl p-10 shadow-card hover-lift animate-slide-up" style="animation-delay: 0.1s;">
+                            <div class="flex items-start justify-between mb-6">
+                                <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                                    <i class="fas fa-tooth text-white text-2xl"></i>
+                                </div>
+                                <span class="px-4 py-2 bg-white/20 text-white rounded-full text-xs font-semibold">Restorative</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-4">Advanced Restorative Dentistry</h3>
+                            <p class="text-emerald-100/80 leading-relaxed mb-8">Biomimetic restorations that replicate natural tooth structure using high-grade ceramics and composites for strength, function, and aesthetics.</p>
+                            
+                            <div class="relative rounded-2xl overflow-hidden h-48 mb-8">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1606811971618-4486d14f2f8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                    alt="Dental restoration procedure"
+                                    class="w-full h-full object-cover lazy-image"
+                                    onload="this.classList.add('loaded')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                            </div>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-star text-emerald-300"></i>
+                                    <span class="font-medium">Metal-Free Ceramic Implants</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-star text-emerald-300"></i>
+                                    <span class="font-medium">Same-Day CAD/CAM Crowns</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-star text-emerald-300"></i>
+                                    <span class="font-medium">Minimally Invasive Fillings</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-star text-emerald-300"></i>
+                                    <span class="font-medium">Full-Mouth Rehabilitation</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-6 border-t border-white/10">
+                                <h4 class="font-bold text-white mb-4">Investment: From $950</h4>
+                                <a @click="navigateTo('contact')" class="inline-flex items-center gap-2 text-white font-medium hover:text-emerald-200">
+                                    <span>Explore restorative options</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Specialty Services -->
+                    <div class="mb-16">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center animate-slide-up">Specialty Services</h2>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="bg-white rounded-3xl p-8 shadow-soft border border-gray-100 hover-lift animate-slide-up">
+                                <div class="relative rounded-2xl overflow-hidden h-48 mb-6">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                        alt="Cosmetic dentistry and smile design"
+                                        class="w-full h-full object-cover lazy-image"
+                                        onload="this.classList.add('loaded')"
+                                    >
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                                </div>
+                                <div class="w-14 h-14 bg-cyan-100 rounded-2xl flex items-center justify-center mb-6 absolute -top-7 left-8">
+                                    <i class="fas fa-smile text-cyan-700 text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-4">Aesthetic Dentistry</h3>
+                                <p class="text-gray-600 text-sm mb-6">Transform your smile with our minimally invasive cosmetic procedures.</p>
+                                <ul class="space-y-2 text-sm text-gray-700 mb-6">
+                                    <li class="flex items-center gap-2">
+                                        <i class="fas fa-check text-cyan-500 text-xs"></i>
+                                        <span>Porcelain Veneers</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <i class="fas fa-check text-cyan-500 text-xs"></i>
+                                        <span>Teeth Whitening</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <i class="fas fa-check text-cyan-500 text-xs"></i>
+                                        <span>Invisalign® Clear Aligners</span>
+                                    </li>
+                                </ul>
+                                <a @click="navigateTo('contact')" class="text-cyan-700 text-sm font-medium hover:text-cyan-800">
+                                    Learn more →
+                                </a>
+                            </div>
+                            
+                            <div class="bg-white rounded-3xl p-8 shadow-soft border border-gray-100 hover-lift animate-slide-up" style="animation-delay: 0.1s;">
+                                <div class="relative rounded-2xl overflow-hidden h-48 mb-6">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                        alt="Periodontal gum treatment"
+                                        class="w-full h-full object-cover lazy-image"
+                                        onload="this.classList.add('loaded')"
+                                    >
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                                </div>
+                                <div class="w-14 h-14 bg-violet-100 rounded-2xl flex items-center justify-center mb-6 absolute -top-7 left-8">
+                                    <i class="fas fa-teeth-open text-violet-700 text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-4">Periodontal Care</h3>
+                                <p class="text-gray-600 text-sm mb-6">Specialized gum treatments focusing on biocompatible materials.</p>
+                                <ul class="space-y-2 text-sm text-gray-700 mb-6">
+                                    <li class="flex items-center gap-2">
+                                        <i class="fas fa-check text-violet-500 text-xs"></i>
+                                        <span>Laser Gum Therapy</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <i class="fas fa-check text-violet-500 text-xs"></i>
+                                        <span>Gum Grafting</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <i class="fas fa-check text-violet-500 text-xs"></i>
+                                        <span>Perio-Systemic Health</span>
+                                    </li>
+                                </ul>
+                                <a @click="navigateTo('contact')" class="text-violet-700 text-sm font-medium hover:text-violet-800">
+                                    Learn more →
+                                </a>
+                            </div>
+                            
+                            <div class="bg-white rounded-3xl p-8 shadow-soft border border-gray-100 hover-lift animate-slide-up" style="animation-delay: 0.2s;">
+                                <div class="relative rounded-2xl overflow-hidden h-48 mb-6">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                        alt="Sleep dentistry and airway evaluation"
+                                        class="w-full h-full object-cover lazy-image"
+                                        onload="this.classList.add('loaded')"
+                                    >
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                                </div>
+                                <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center mb-6 absolute -top-7 left-8">
+                                    <i class="fas fa-teeth text-amber-700 text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-4">Sleep & Airway Dentistry</h3>
+                                <p class="text-gray-600 text-sm mb-6">Evaluation and treatment for sleep-disordered breathing issues.</p>
+                                <ul class="space-y-2 text-sm text-gray-700 mb-6">
+                                    <li class="flex items-center gap-2">
+                                        <i class="fas fa-check text-amber-500 text-xs"></i>
+                                        <span>Sleep Apnea Appliances</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <i class="fas fa-check text-amber-500 text-xs"></i>
+                                        <span>Airway Evaluation</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <i class="fas fa-check text-amber-500 text-xs"></i>
+                                        <span>Myofunctional Therapy</span>
+                                    </li>
+                                </ul>
+                                <a @click="navigateTo('contact')" class="text-amber-700 text-sm font-medium hover:text-amber-800">
+                                    Learn more →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Technology -->
+                    <div class="bg-gradient-to-r from-slate-50 to-gray-50 rounded-3xl p-12 border border-gray-100 mb-16 animate-slide-up">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h3 class="text-3xl font-bold text-gray-900 mb-6">Advanced Technology</h3>
+                                <p class="text-gray-600 leading-relaxed mb-6">We invest in the latest dental technology to ensure precision, comfort, and superior outcomes for every patient.</p>
+                                <ul class="space-y-4">
+                                    <li class="flex items-center gap-4">
+                                        <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-camera text-emerald-700"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-900">Intraoral Scanning</p>
+                                            <p class="text-sm text-gray-600">Digital impressions without messy traditional molds</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-center gap-4">
+                                        <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-tv text-emerald-700"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-900">CBCT 3D Imaging</p>
+                                            <p class="text-sm text-gray-600">Detailed 3D views for precise diagnosis and planning</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-center gap-4">
+                                        <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-microchip text-emerald-700"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-900">CAD/CAM Restorations</p>
+                                            <p class="text-sm text-gray-600">Design and create crowns in a single visit</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="relative rounded-3xl overflow-hidden shadow-lg h-80">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" 
+                                    alt="Modern dental technology and equipment"
+                                    class="w-full h-full object-cover lazy-image"
+                                    onload="this.classList.add('loaded')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Process -->
+                    <div class="text-center mb-16 animate-slide-up">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6">Our Care Process</h3>
+                        <p class="text-lg text-gray-600 mb-12">Every patient receives a personalized approach based on comprehensive evaluation and collaborative planning.</p>
+                        
+                        <div class="grid md:grid-cols-4 gap-8">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-emerald-800 font-bold text-xl">1</span>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">Discovery</h4>
+                                <p class="text-gray-600 text-sm">Comprehensive health history and goal setting</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-emerald-800 font-bold text-xl">2</span>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">Diagnostics</h4>
+                                <p class="text-gray-600 text-sm">Advanced imaging and biological testing</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-emerald-800 font-bold text-xl">3</span>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">Planning</h4>
+                                <p class="text-gray-600 text-sm">Collaborative treatment plan development</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-emerald-800 font-bold text-xl">4</span>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">Treatment</h4>
+                                <p class="text-gray-600 text-sm">Gentle, precise care with comfort focus</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========== TEAM PAGE ========== -->
+        <div x-show="currentPage === 'team'" x-transition:enter="animate-fade-in" class="min-h-screen">
+            <!-- Team Hero -->
+            <section class="hero-gradient pt-24 pb-16 px-6 lg:px-12">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center max-w-3xl mx-auto">
+                        <span class="inline-block px-4 py-2 bg-emerald-50 text-emerald-800 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">Our Specialists</span>
+                        <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Meet Our Expert Team</h1>
+                        <p class="text-lg text-gray-600">Led by Dr. Julian Aura, our multidisciplinary team brings together decades of experience in biological dentistry and advanced restoration.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dr. Julian Aura -->
+            <section class="section-padding px-6 lg:px-12">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                        <div class="relative animate-slide-up">
+                            <div class="relative aspect-square rounded-[4rem] overflow-hidden shadow-2xl">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                                    alt="Dr. Julian Aura, Founder & Clinical Director"
+                                    class="w-full h-full object-cover lazy-image"
+                                    onload="this.classList.add('loaded')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                            </div>
+                            <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+                                <p class="text-sm font-bold text-gray-900 mb-1">18+ Years Experience</p>
+                                <p class="text-xs text-gray-500">Advanced Restorative Dentistry</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-8 animate-slide-up">
+                            <div>
+                                <h2 class="text-4xl font-bold text-gray-900">Dr. Julian Aura, <span class="text-emerald-700">DDS, FAGD</span></h2>
+                                <p class="text-lg text-emerald-700 font-medium mt-2">Founder & Clinical Director</p>
+                            </div>
+                            
+                            <p class="text-lg text-gray-600 leading-relaxed">With over 18 years of clinical experience, Dr. Aura founded Aura Dental on a revolutionary principle: <span class="font-semibold text-gray-900">Fear is often a symptom of poor communication, rushed care, and outdated practices.</span> His approach merges cutting-edge technology with a deep understanding of patient psychology.</p>
+                            
+                            <div class="grid grid-cols-2 gap-8 py-6">
+                                <div>
+                                    <p class="text-xs uppercase tracking-wider font-bold text-emerald-700 mb-2">Specialization</p>
+                                    <p class="text-sm font-medium text-gray-900 mb-1">Holistic & Aesthetic Reconstruction</p>
+                                    <p class="text-sm font-medium text-gray-900">Biocompatible Dentistry</p>
+                                    <p class="text-sm font-medium text-gray-900">Full-Mouth Rehabilitation</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase tracking-wider font-bold text-emerald-700 mb-2">Education</p>
+                                    <p class="text-sm font-medium text-gray-900 mb-1">Columbia University School of Dental Medicine</p>
+                                    <p class="text-sm font-medium text-gray-900">Pankey Institute for Advanced Dental Education</p>
+                                    <p class="text-sm font-medium text-gray-900">International Academy of Biological Dentistry</p>
+                                </div>
+                            </div>
+                            
+                            <div class="p-8 bg-gradient-to-r from-emerald-50 to-cyan-50 rounded-3xl border border-emerald-100">
+                                <p class="text-emerald-900 italic font-medium text-lg mb-4">"We don't just treat teeth. We care for the nervous system of the person in our chair. That distinction changes everything about the dental experience."</p>
+                                <p class="text-emerald-800 text-sm font-semibold">— Dr. Julian Aura</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Members -->
+                    <div class="mb-20">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center animate-slide-up">Our Specialist Team</h2>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="bg-white rounded-3xl p-8 shadow-card border border-gray-100 hover-lift text-center animate-slide-up">
+                                <div class="relative rounded-3xl overflow-hidden h-64 mb-6 mx-auto">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                                        alt="Dr. Maya Rodriguez, Periodontist"
+                                        class="w-full h-full object-cover lazy-image"
+                                        onload="this.classList.add('loaded')"
+                                    >
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Dr. Maya Rodriguez</h3>
+                                <p class="text-emerald-700 font-medium mb-3">Periodontist & Implant Specialist</p>
+                                <p class="text-gray-600 text-sm mb-6">Specializing in gum health and advanced implant placement with a focus on biocompatible materials.</p>
+                                <div class="flex justify-center gap-4">
+                                    <span class="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">Gum Health</span>
+                                    <span class="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">Implants</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-3xl p-8 shadow-card border border-gray-100 hover-lift text-center animate-slide-up" style="animation-delay: 0.1s;">
+                                <div class="relative rounded-3xl overflow-hidden h-64 mb-6 mx-auto">
+                                    <img 
+                                        src="https://i.ibb.co/JjbXvv1m/Gemini-Generated-Image-isxh8isxh8isxh8i.png" 
+                                        alt="Dr. Sarah Chen, Aesthetic Dentist"
+                                        class="w-full h-full object-cover lazy-image"
+                                        onload="this.classList.add('loaded')"
+                                    >
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Dr. Sarah Chen</h3>
+                                <p class="text-emerald-700 font-medium mb-3">Aesthetic & Restorative Dentist</p>
+                                <p class="text-gray-600 text-sm mb-6">Expert in smile design, porcelain veneers, and minimally invasive cosmetic dentistry with over 12 years of experience.</p>
+                                <div class="flex justify-center gap-4">
+                                    <span class="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">Cosmetic</span>
+                                    <span class="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">Smile Design</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-3xl p-8 shadow-card border border-gray-100 hover-lift text-center animate-slide-up" style="animation-delay: 0.2s;">
+                                <div class="relative rounded-3xl overflow-hidden h-64 mb-6 mx-auto">
+                                    <img 
+                                        src="https://i.ibb.co/xKPhk9Nn/Gemini-Generated-Image-9w39ar9w39ar9w39.png" 
+                                        alt="Emma Wilson, Biological Dental Hygienist"
+                                        class="w-full h-full object-cover lazy-image"
+                                        onload="this.classList.add('loaded')"
+                                    >
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Emma Wilson, RDH</h3>
+                                <p class="text-emerald-700 font-medium mb-3">Biological Dental Hygienist</p>
+                                <p class="text-gray-600 text-sm mb-6">Specializes in non-toxic cleaning protocols and patient education for long-term oral health. Certified in biological hygiene techniques.</p>
+                                <div class="flex justify-center gap-4">
+                                    <span class="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">Hygiene</span>
+                                    <span class="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">Education</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Support Team -->
+                    <div class="bg-gradient-to-r from-emerald-50 to-cyan-50 rounded-3xl p-12 border border-emerald-100 animate-slide-up">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">Our Support Team</h3>
+                        <p class="text-gray-600 text-center mb-10 max-w-2xl mx-auto">Behind every great dentist is an exceptional support team dedicated to making your experience seamless and comfortable.</p>
+                        
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                                    <i class="fas fa-headset text-emerald-700"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">Patient Coordinators</h4>
+                                <p class="text-gray-600 text-sm">Your first point of contact, helping with scheduling and questions</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                                    <i class="fas fa-stethoscope text-emerald-700"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">Dental Assistants</h4>
+                                <p class="text-gray-600 text-sm">Trained in gentle techniques and comfort-focused care</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                                    <i class="fas fa-calculator text-emerald-700"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">Financial Coordinators</h4>
+                                <p class="text-gray-600 text-sm">Helping navigate insurance and payment options</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                                    <i class="fas fa-shield-alt text-emerald-700"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">Sterilization Team</h4>
+                                <p class="text-gray-600 text-sm">Ensuring the highest standards of cleanliness and safety</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========== CONTACT PAGE ========== -->
+        <div x-show="currentPage === 'contact'" x-transition:enter="animate-fade-in" class="min-h-screen">
+            <!-- Contact Hero -->
+            <section class="hero-gradient pt-24 pb-16 px-6 lg:px-12">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center max-w-3xl mx-auto">
+                        <span class="inline-block px-4 py-2 bg-emerald-50 text-emerald-800 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">Get in Touch</span>
+                        <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Contact Aura Dental</h1>
+                        <p class="text-lg text-gray-600">Our patient coordinators are ready to help you schedule your visit or answer any questions about our approach.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="section-padding px-6 lg:px-12">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-16 mb-20">
+                        <div class="animate-slide-up">
+                            <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Information</h2>
+                            
+                            <div class="space-y-8 mb-12">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-emerald-700"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 mb-1">Visit Our Clinic</h4>
+                                        <p class="text-gray-600">1200 Wellness Blvd, Suite 10<br>New York, NY 10001</p>
+                                        <a href="#" class="text-emerald-700 text-sm font-medium hover:text-emerald-800 mt-2 inline-block">
+                                            Get directions →
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-phone-alt text-emerald-700"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 mb-1">Call Us</h4>
+                                        <p class="text-gray-600">Main: 212.555.0198<br>Emergency: 212.555.0199</p>
+                                        <a href="tel:2125550198" class="text-emerald-700 text-sm font-medium hover:text-emerald-800 mt-2 inline-block">
+                                            Call now →
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-envelope text-emerald-700"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 mb-1">Email Us</h4>
+                                        <p class="text-gray-600">care@auradental.com<br>info@auradental.com</p>
+                                        <a href="mailto:care@auradental.com" class="text-emerald-700 text-sm font-medium hover:text-emerald-800 mt-2 inline-block">
+                                            Send email →
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-clock text-emerald-700"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 mb-1">Hours</h4>
+                                        <p class="text-gray-600">Mon-Fri: 8:00am - 6:00pm<br>Sat: 10:00am - 2:00pm<br>Sun: Emergency Only</p>
+                                        <p class="text-sm text-emerald-700 font-medium mt-2">Same-day emergency appointments available</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-4">Connect With Us</h4>
+                                <div class="flex gap-4">
+                                    <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-emerald-100 hover:text-emerald-700 transition-colors">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-emerald-100 hover:text-emerald-700 transition-colors">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-emerald-100 hover:text-emerald-700 transition-colors">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-emerald-100 hover:text-emerald-700 transition-colors">
+                                        <i class="fab fa-google"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Form -->
+                        <div class="bg-white rounded-3xl p-10 shadow-card border border-gray-100 animate-slide-up" style="animation-delay: 0.1s;">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Request a Consultation</h3>
+                            <p class="text-gray-600 mb-8">A patient coordinator will contact you within 2 hours.</p>
+                            
+                            <form @submit.prevent="alert('Thank you for your consultation request. A patient coordinator will contact you within 2 hours.')" class="space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                                        <input type="text" required placeholder="John" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                                        <input type="text" required placeholder="Doe" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all">
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                                        <input type="email" required placeholder="john@example.com" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                        <input type="tel" required placeholder="(555) 123-4567" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Contact Method</label>
+                                    <div class="flex gap-4">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="contact-method" value="phone" checked class="mr-2 text-emerald-600">
+                                            <span class="text-gray-700">Phone</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="radio" name="contact-method" value="email" class="mr-2 text-emerald-600">
+                                            <span class="text-gray-700">Email</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="radio" name="contact-method" value="text" class="mr-2 text-emerald-600">
+                                            <span class="text-gray-700">Text</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Reason for Visit *</label>
+                                    <select class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all text-gray-700">
+                                        <option>New Patient Consultation</option>
+                                        <option>Dental Emergency</option>
+                                        <option>Cosmetic Dentistry</option>
+                                        <option>Second Opinion</option>
+                                        <option>Routine Check-up</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tell us about your needs</label>
+                                    <textarea placeholder="Please describe your dental concerns, questions, or specific needs..." class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all h-32"></textarea>
+                                </div>
+                                
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="consent" required class="w-5 h-5 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500">
+                                    <label for="consent" class="text-sm text-gray-600">I agree to the privacy policy and consent to being contacted by Aura Dental.</label>
+                                </div>
+                                
+                                <button type="submit" class="w-full py-5 bg-gradient-to-r from-emerald-700 to-emerald-800 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-emerald-800 hover:to-emerald-900 transition-all">
+                                    Request Consultation
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Section -->
+                    <div class="bg-gradient-to-r from-emerald-50 to-cyan-50 rounded-3xl p-12 border border-emerald-100 animate-slide-up">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">Visit Our Clinic</h3>
+                        <div class="grid lg:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <p class="text-gray-600 mb-6">Our clinic is conveniently located in the heart of New York's Wellness District, with easy access to public transportation and parking facilities.</p>
+                                
+                                <div class="space-y-4">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fas fa-subway text-emerald-700 mt-1"></i>
+                                        <div>
+                                            <p class="font-medium text-gray-900">Public Transportation</p>
+                                            <p class="text-sm text-gray-600">5 min walk from 14th St-Union Square station (4,5,6,L,N,Q,R,W)</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start gap-3">
+                                        <i class="fas fa-parking text-emerald-700 mt-1"></i>
+                                        <div>
+                                            <p class="font-medium text-gray-900">Parking</p>
+                                            <p class="text-sm text-gray-600">Valet parking available. Nearby garages on 13th St and 15th St.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start gap-3">
+                                        <i class="fas fa-wheelchair text-emerald-700 mt-1"></i>
+                                        <div>
+                                            <p class="font-medium text-gray-900">Accessibility</p>
+                                            <p class="text-sm text-gray-600">Fully ADA compliant with wheelchair access and accommodations.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="relative rounded-3xl overflow-hidden shadow-lg h-80">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                                    alt="Aura Dental clinic exterior and location"
+                                    class="w-full h-full object-cover lazy-image"
+                                    onload="this.classList.add('loaded')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                                <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm p-4 rounded-2xl">
+                                    <p class="font-bold text-gray-900">Aura Dental</p>
+                                    <p class="text-sm text-gray-600">1200 Wellness Blvd, Suite 10, New York, NY</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-16 pb-8 px-6 border-t border-gray-200 bg-white mt-auto">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-emerald-700 rounded-lg flex items-center justify-center text-white font-bold">A</div>
+                        <div>
+                            <span class="text-xl font-bold text-gray-900">AURA DENTAL</span>
+                            <p class="text-xs text-gray-500">Advanced Biological & Restorative Dentistry</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-6">A new standard in biological dentistry, merging cutting-edge technology with compassionate, patient-centered care.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-emerald-100 hover:text-emerald-700 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-emerald-100 hover:text-emerald-700 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-emerald-100 hover:text-emerald-700 transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-emerald-100 hover:text-emerald-700 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-gray-900 text-lg mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a @click="navigateTo('home')" class="text-gray-600 hover:text-emerald-700 transition-colors cursor-pointer">Home</a></li>
+                        <li><a @click="navigateTo('about')" class="text-gray-600 hover:text-emerald-700 transition-colors cursor-pointer">About Us</a></li>
+                        <li><a @click="navigateTo('services')" class="text-gray-600 hover:text-emerald-700 transition-colors cursor-pointer">Services</a></li>
+                        <li><a @click="navigateTo('team')" class="text-gray-600 hover:text-emerald-700 transition-colors cursor-pointer">Our Team</a></li>
+                        <li><a @click="navigateTo('contact')" class="text-gray-600 hover:text-emerald-700 transition-colors cursor-pointer">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-gray-900 text-lg mb-6">Our Services</h4>
+                    <ul class="space-y-3">
+                        <li><a @click="navigateTo('services')" class="text-gray-600 hover:text-emerald-700 transition-colors cursor-pointer">Biological Dentistry</a></li>
+                        <li><a @click="navigateTo('services')" class="text-gray-600 hover:text-emerald-700 transition-colors cursor-pointer">Preventive Care</a></li>
+                        <li><a @click="navigateTo('services')" class="text-gray-600 hover:text-emerald-700 transition-colors cursor-pointer">Restorative Dentistry</a></li>
+                        <li><a @click="navigateTo('services')" class="text-gray-600 hover:text-emerald-700 transition-colors cursor-pointer">Cosmetic Dentistry</a></li>
+                        <li><a @click="navigateTo('services')" class="text-gray-600 hover:text-emerald-700 transition-colors cursor-pointer">Sleep Dentistry</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-gray-900 text-lg mb-6">Contact Info</h4>
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-emerald-700 mt-1"></i>
+                            <span>1200 Wellness Blvd, Suite 10<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone-alt text-emerald-700"></i>
+                            <span>212.555.0198</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-emerald-700"></i>
+                            <span>care@auradental.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <p class="text-sm text-gray-600">© 2026 Aura Dental Group. All rights reserved.</p>
+                        <div class="flex flex-wrap gap-4 mt-3 text-xs text-gray-500">
+                            <a href="#" class="hover:text-emerald-700">Privacy Policy</a>
+                            <a href="#" class="hover:text-emerald-700">Terms of Service</a>
+                            <a href="#" class="hover:text-emerald-700">Accessibility</a>
+                            <a href="#" class="hover:text-emerald-700">HIPAA Compliance</a>
+                            <a href="#" class="hover:text-emerald-700">Sitemap</a>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center md:text-right">
+                        <div class="flex items-center gap-6 mb-3 justify-center md:justify-end">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-shield-alt text-emerald-700 text-xs"></i>
+                                </div>
+                                <span class="text-xs font-medium text-gray-700">HIPAA Compliant</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-award text-emerald-700 text-xs"></i>
+                                </div>
+                                <span class="text-xs font-medium text-gray-700">ADA Accredited</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500">Advanced Dentistry with a Biological Focus</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
