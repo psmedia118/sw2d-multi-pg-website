@@ -1007,11 +1007,86 @@
                 </div>
             </section>
 
-            <!-- Contact Section -->
+            <!-- Contact Section - REORDERED: Form first, then clinic information -->
             <section class="section-padding px-6 lg:px-12">
                 <div class="max-w-7xl mx-auto">
                     <div class="grid lg:grid-cols-2 gap-16 mb-20">
-                        <div class="animate-slide-up">
+                        <!-- Request Consultation Form - NOW FIRST -->
+                        <div class="bg-white rounded-3xl p-10 shadow-card border border-gray-100 animate-slide-up">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Request a Consultation</h3>
+                            <p class="text-gray-600 mb-8">A patient coordinator will contact you within 2 hours.</p>
+                            
+                            <form @submit.prevent="alert('Thank you for your consultation request. A patient coordinator will contact you within 2 hours.')" class="space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                                        <input type="text" required placeholder="John" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                                        <input type="text" required placeholder="Doe" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all">
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                                        <input type="email" required placeholder="john@example.com" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                        <input type="tel" required placeholder="(555) 123-4567" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Contact Method</label>
+                                    <div class="flex gap-4">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="contact-method" value="phone" checked class="mr-2 text-emerald-600">
+                                            <span class="text-gray-700">Phone</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="radio" name="contact-method" value="email" class="mr-2 text-emerald-600">
+                                            <span class="text-gray-700">Email</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="radio" name="contact-method" value="text" class="mr-2 text-emerald-600">
+                                            <span class="text-gray-700">Text</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Reason for Visit *</label>
+                                    <select class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all text-gray-700">
+                                        <option>New Patient Consultation</option>
+                                        <option>Dental Emergency</option>
+                                        <option>Cosmetic Dentistry</option>
+                                        <option>Second Opinion</option>
+                                        <option>Routine Check-up</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tell us about your needs</label>
+                                    <textarea placeholder="Please describe your dental concerns, questions, or specific needs..." class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all h-32"></textarea>
+                                </div>
+                                
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="consent" required class="w-5 h-5 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500">
+                                    <label for="consent" class="text-sm text-gray-600">I agree to the privacy policy and consent to being contacted by Aura Dental.</label>
+                                </div>
+                                
+                                <button type="submit" class="w-full py-5 bg-gradient-to-r from-emerald-700 to-emerald-800 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-emerald-800 hover:to-emerald-900 transition-all">
+                                    Request Consultation
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Clinic Information - NOW SECOND -->
+                        <div class="animate-slide-up" style="animation-delay: 0.1s;">
                             <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Information</h2>
                             
                             <div class="space-y-8 mb-12">
@@ -1084,83 +1159,9 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Contact Form -->
-                        <div class="bg-white rounded-3xl p-10 shadow-card border border-gray-100 animate-slide-up" style="animation-delay: 0.1s;">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Request a Consultation</h3>
-                            <p class="text-gray-600 mb-8">A patient coordinator will contact you within 2 hours.</p>
-                            
-                            <form @submit.prevent="alert('Thank you for your consultation request. A patient coordinator will contact you within 2 hours.')" class="space-y-6">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-                                        <input type="text" required placeholder="John" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-                                        <input type="text" required placeholder="Doe" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all">
-                                    </div>
-                                </div>
-                                
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                                        <input type="email" required placeholder="john@example.com" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
-                                        <input type="tel" required placeholder="(555) 123-4567" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all">
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Contact Method</label>
-                                    <div class="flex gap-4">
-                                        <label class="flex items-center">
-                                            <input type="radio" name="contact-method" value="phone" checked class="mr-2 text-emerald-600">
-                                            <span class="text-gray-700">Phone</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="radio" name="contact-method" value="email" class="mr-2 text-emerald-600">
-                                            <span class="text-gray-700">Email</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="radio" name="contact-method" value="text" class="mr-2 text-emerald-600">
-                                            <span class="text-gray-700">Text</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Reason for Visit *</label>
-                                    <select class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all text-gray-700">
-                                        <option>New Patient Consultation</option>
-                                        <option>Dental Emergency</option>
-                                        <option>Cosmetic Dentistry</option>
-                                        <option>Second Opinion</option>
-                                        <option>Routine Check-up</option>
-                                        <option>Other</option>
-                                    </select>
-                                </div>
-                                
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tell us about your needs</label>
-                                    <textarea placeholder="Please describe your dental concerns, questions, or specific needs..." class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white outline-none transition-all h-32"></textarea>
-                                </div>
-                                
-                                <div class="flex items-center gap-3">
-                                    <input type="checkbox" id="consent" required class="w-5 h-5 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500">
-                                    <label for="consent" class="text-sm text-gray-600">I agree to the privacy policy and consent to being contacted by Aura Dental.</label>
-                                </div>
-                                
-                                <button type="submit" class="w-full py-5 bg-gradient-to-r from-emerald-700 to-emerald-800 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-emerald-800 hover:to-emerald-900 transition-all">
-                                    Request Consultation
-                                </button>
-                            </form>
-                        </div>
                     </div>
                     
-                    <!-- Map Section -->
+                    <!-- Map Section - KEPT THE SAME -->
                     <div class="bg-gradient-to-r from-emerald-50 to-cyan-50 rounded-3xl p-12 border border-emerald-100 animate-slide-up">
                         <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">Visit Our Clinic</h3>
                         <div class="grid lg:grid-cols-2 gap-12 items-center">
